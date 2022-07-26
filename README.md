@@ -1,2 +1,3 @@
 # pizzaroulettev2
-The only legit way to eat pizza v2
+
+The only legit way to decide what to eat v2
