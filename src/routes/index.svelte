@@ -3,10 +3,10 @@ import {pizza, fetchPizza} from "../stores/pizzastore"
 
 
 </script>
-
+<div class='container flex flex-col'>
 <h1 class="text-4xl text-center my-8">Pizza Roulette</h1>
 
-<div class='pizzaContainer mx-auto'>
+<div class='pizzaContainer container'>
 <div class='container mx-auto bg-black bg-opacity-30 text-center p-4'>
 
 
@@ -20,7 +20,10 @@ import {pizza, fetchPizza} from "../stores/pizzastore"
 
 </div>
 </div>
-<button class='mx-auto bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' on:click={fetchPizza}>Slumpa</button>
+
+<button class='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded my-10' on:click={fetchPizza}>Slumpa</button>
+
+</div>
 
 
 
