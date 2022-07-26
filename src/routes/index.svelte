@@ -1,10 +1,16 @@
 <script>
-  
+import {pizza} from "../stores/pizzastore"
+console.log($pizza)
+
 </script>
 
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
+<div id="container">
+  <h1 class="animate">Pizza Roulette</h1>
+  <button>Slumpa</button>
+
+
+</div>
+
 
 <style>
   /* if needed */
