@@ -19,15 +19,17 @@
 
 <div class="container flex align-center flex-col">
 	<div class="pizzaContainer container" class:spin>
-		<div class="container mx-auto bg-black bg-opacity-30 text-center p-8">
+		<div class="container mx-auto bg-black bg-opacity-30 text-center p-8" class:fadeIn={spin}>
 			{#if !pizza}
-				<h1 class="animate text-8xl mx-auto font-extrabold">Pizza Roulette</h1>
+				<h1 class="animate text-5xl sm:text-8xl mx-auto font-extrabold">Pizza Roulette</h1>
 			{:else}
 				{#each $pizzor as pizza}
-					<div class="text-6xl my-4 text-red-700 font-extrabold text-shadow-md">
+					<div class="text-5xl sm:text-6xl my-4 text-red-600 font-extrabold text-shadow-md">
 						{pizza.id}. {pizza.pizzaName}
 					</div>
-					<div class="pizzaIng text-4xl font-extrabold text-green-700 my-4 text-shadow-md">
+					<div
+						class="pizzaIng text-3xl sm:text-4xl font-extrabold text-green-600 my-4 text-shadow-md"
+					>
 						{pizza.pizzaIng}
 					</div>
 				{/each}
@@ -69,7 +71,11 @@
 	}
 
 	.spin {
-		animation: spin 250ms linear 2;
+		animation: spin 1000ms linear;
+	}
+
+	.fadeIn {
+		animation: fadeIn 2000ms ease;
 	}
 
 	@keyframes spin {
@@ -79,6 +85,16 @@
 
 		to {
 			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
 		}
 	}
 
