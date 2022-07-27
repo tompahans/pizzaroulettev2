@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-export const pizza = writable([]);
+export const pizzor = writable([]);
 
 function getRndInteger(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
@@ -19,5 +19,5 @@ export const fetchPizza = async () => {
 			id: random
 		};
 	});
-	pizza.set(loadedPizza);
+	pizzor.set(loadedPizza);
 };

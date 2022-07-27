@@ -1,57 +1,98 @@
 <script>
-import {pizza, fetchPizza} from "../stores/pizzastore"
+	import { pizzor, fetchPizza } from '../stores/pizzastore';
 
+	let spin,
+		pizza = false;
 
+	function handleClick() {
+		if (spin) return;
+
+		spin = true;
+		fetchPizza();
+		pizza = true;
+
+		setTimeout(() => {
+			spin = false;
+		}, 1000);
+	}
 </script>
-<div class='container flex flex-col'>
-<h1 class="text-4xl text-center my-8">Pizza Roulette</h1>
 
-<div class='pizzaContainer container'>
-<div class='container mx-auto bg-black bg-opacity-30 text-center p-4'>
+<div class="container flex align-center flex-col">
+	<div class="pizzaContainer container" class:spin>
+		<div class="container mx-auto bg-black bg-opacity-30 text-center p-8">
+			{#if !pizza}
+				<h1 class="animate text-8xl mx-auto font-extrabold">Pizza Roulette</h1>
+			{:else}
+				{#each $pizzor as pizza}
+					<div class="text-6xl my-4 text-red-700 font-extrabold text-shadow-md">
+						{pizza.id}. {pizza.pizzaName}
+					</div>
+					<div class="pizzaIng text-4xl font-extrabold text-green-700 my-4 text-shadow-md">
+						{pizza.pizzaIng}
+					</div>
+				{/each}
+			{/if}
+		</div>
+	</div>
 
-
-{#each $pizza as pizzor}
-
-<div class='text-6xl my-4 text-red-700 font-extrabold text-shadow-md'>{pizzor.id}. {pizzor.pizzaName}</div>
-<div class='pizzaIng text-4xl font-extrabold text-green-700 my-4 text-shadow-md'>{pizzor.pizzaIng}</div>
-{/each}
-
-
-
+	<button
+		class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded my-10"
+		on:click={handleClick}>Slumpa</button
+	>
 </div>
-</div>
-
-<button class='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded my-10' on:click={fetchPizza}>Slumpa</button>
-
-</div>
-
-
-
 
 <style>
-  .pizzaContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: url("./image_piazza.png") no-repeat center;
-    max-width: 720px;
-    max-height: 720px;
-    aspect-ratio: 1/1;
-    background-size: 118%;
-    overflow: hidden;
-  vertical-align: middle;
-    clip-path: circle(50%);
-    animation: spin 250ms linear 20;
-  }
+	.pizzaContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: url('./image_piazza.png') no-repeat center;
+		max-width: 720px;
+		max-height: 720px;
+		aspect-ratio: 1/1;
+		background-size: 118%;
+		overflow: hidden;
+		vertical-align: middle;
+		clip-path: circle(50%);
+	}
 
-  @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
+	.animate {
+		background: linear-gradient(to right, green 32%, white 32% 56%, red 56% 75%, red 75%);
+		background-size: 130% 130%;
+		-webkit-animation: italy 15s ease infinite;
+		-moz-animation: italy 15s ease infinite;
+		animation: italy 15s ease infinite;
+		-webkit-background-clip: text;
+		-moz-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
 
-  to {
-    transform: rotate(360deg);
-  }
-}
+	.spin {
+		animation: spin 250ms linear 2;
+	}
 
+	@keyframes spin {
+		from {
+			transform: rotate(0deg);
+		}
+
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes italy {
+		0% {
+			background-position: 0% 40%;
+		}
+
+		50% {
+			background-position: 40% 0%;
+		}
+
+		100% {
+			background-position: 0% 40%;
+		}
+	}
 </style>
